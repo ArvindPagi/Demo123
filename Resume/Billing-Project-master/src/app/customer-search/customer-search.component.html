@@ -1,0 +1,66 @@
+<div class = "add"> 
+    <a routerLink="/add" routerLinkActive="active-link"><button class="btn btn-success pull-right" > Add Customer</button></a>
+    </div>
+<section class="container-fluide p-4 bg-success">
+    
+    <app-message-box *ngIf="!errMsg && !list" 
+                    type="info" 
+                    title="Please Wait" 
+                    message="loading data from server for you..." >
+    </app-message-box>
+
+    <app-message-box *ngIf="errMsg" 
+                    type="danger" 
+                    title="Error" 
+                    [message]="errMsg" >
+    </app-message-box>
+    <div class="container">
+        <br>
+         <input class="form-control" type="text" [(ngModel)]=searchText placeholder="search Food" /> 
+        <h3 class="text-center">Customer List</h3>
+        <table class="table table-striped table-bordered" border="1 ">
+            <thead class="bg-secondary">
+            <!-- <tr>
+                 <th *ngFor="let h of headers">{{h|titlecase}}</th>
+                <th>Actions</th>
+            </tr>
+            <tr *ngFor="let b of books">
+                <td *ngFor="let h of headers">{{b[h]}}</td>
+                <td>
+                    <a routerLink="/edit/{{b.bcode}}" class="btn btn-sm btn-primary mr-2">EDIT</a>
+                    <a (click)="deleteBook(b.bcode)" class="btn btn-sm btn-danger text-light">DELETE</a>
+                </td>
+            </tr> -->
+          <tr> 
+            <th>Name</th>
+            <th> WaterMeterNo</th>
+            <th> CustomerCode</th>
+            
+           
+          </tr>
+        </thead>
+        <tbody>
+         <tr   *ngFor= "let b of list | filter:searchText">
+
+                <td>{{b.waterMeterNo}}</td>
+                <td>{{b.name}}</td>
+                <td>{{b.customerCode}}</td>
+                
+                
+                <td>
+                    <a routerLink="/edit/{{b.waterMeterNo}}" class="btn btn-sm btn-primary mr-2">Details</a>
+                        
+                    </td>
+
+          </tr>
+        </tbody>
+
+        </table>
+    
+
+</div>
+</section>
+
+
+  
+  
